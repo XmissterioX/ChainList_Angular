@@ -1,0 +1,49 @@
+<mat-toolbar style="width: 100;" color="primary">
+  <mat-toolbar-row>
+    <span>{{ model.account }}</span>
+    <span class="example-spacer"></span>
+    <span>{{ balance }}</span>
+    <span class="example-spacer"></span>
+    <mat-spinner
+    *ngIf=isLoading
+    class="m-1"
+      color = "warn"
+      mode = "indeterminate"
+      diameter = "20"
+      >
+    </mat-spinner>
+    <button type="submit" class="btn btn-primary " (click)="openModal()">Sell article </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
+<div *ngFor="let article of articles">
+<div class="card center" style="width: 18rem;">
+  
+  <div class="card-body">
+    <img class="img-thumbnail" src="https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_960_720.jpg" >
+  </div>
+  <ul class="list-group list-group-flush">
+      <li class="list-group-item"> id: {{ article.id }}</li>
+    <li class="list-group-item"> name: {{ article.name }}</li>
+    <ng-container *ngIf="model.account.toString() == article.seller.toString(); else elseTemplate">
+        <li class="list-group-item"> seller: You</li>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <li class="list-group-item"> seller: {{ article.seller }}</li>
+    </ng-template>
+    
+    
+
+    <li class="list-group-item"> price: {{ article.price }} ETH </li>
+    <li class="list-group-item"> Description: {{  article.description }} </li>
+  </ul>
+  <span  *ngIf="model.account.toString() !== article.seller.toString()">
+      <button mat-raised-button class="mat-primary w-100" (click)="buyArticle(article.id, article.price)">Buy</button>
+    </span>
+
+ 
+</div>
+
+<br>
+</div>
