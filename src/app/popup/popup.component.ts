@@ -4,7 +4,7 @@ import { Web3Service } from '../util/web3.service';
 import { Article } from '../models/articles.model';
 declare var require: any;
 
-const chainlist_artifacts = require('../../../build/contracts/ChainList.json');
+const chainlist_artifacts = require('assets/ChainList.json');
 @Component({
   selector: 'app-popup',
   templateUrl: './popup.component.html',
