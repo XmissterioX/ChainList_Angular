@@ -60,8 +60,7 @@ export class Web3Service {
       return await this.web3.utils.fromWei(temp.toString(), 'ether');
        }
   public  convertToBigNumber(number: any) {
-    const BN = this.web3.utils.BN;
-    return new BN(number);
+    return this.web3.utils.toBN(number);
 
   }
 
