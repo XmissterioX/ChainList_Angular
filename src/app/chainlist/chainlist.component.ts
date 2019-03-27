@@ -153,9 +153,13 @@ export class ChainlistComponent implements OnInit {
                 let articleToRm: Article;
                 articleToRm = new Article(events.returnValues._id, events.returnValues._seller,
                   events.returnValues._name, events.returnValues._price, events.returnValues._description);
-
-                  const index = this.articles.findIndex(order => order.id === articleToRm.id);
+                  const index = this.myIndexOf(articleToRm);
+                  console.log(index);
                   this.articles.splice(index, 1);
+
+                /*  const index = this.articles.findIndex(order => order.id === articleToRm.id);
+                  console.log(index);
+                  this.articles.splice(index, 1);*/
 
                 /*  for ( var i = 0; i < this.articles.length; i++) {
                     console.log(this.articles[i].id + ' vs ' + articleToRm.id);
@@ -175,7 +179,15 @@ export class ChainlistComponent implements OnInit {
     });
   }
 
-
+   myIndexOf(article: Article) {
+    for (let i = 0; i < this.articles.length; i++) {
+        // tslint:disable-next-line:triple-equals
+        if (this.articles[i].id == article.id) {
+            return i;
+        }
+    }
+    return -1;
+}
 
   buyArticle(id, price) {
     this.web3Service.artifactsToContract(chainlist_artifacts)
