@@ -182,7 +182,7 @@ export class ChainlistComponent implements OnInit {
       .then((ChainListAbstraction) => {
         this.ChainList = ChainListAbstraction;
         this.ChainList.deployed().then(deployed => {
-          return deployed.buyArticle(id, {
+          return deployed.buyArticle(this.web3Service.convertToBigNumber(id), {
             from: this.model.account,
             value: price,
             gas: 500000

@@ -59,8 +59,10 @@ export class Web3Service {
       const temp = await this.web3.eth.getBalance(account);
       return await this.web3.utils.fromWei(temp.toString(), 'ether');
        }
-  public  convertToNumber(price: String) {
-    return  this.web3.utils.fromWei(price, 'ether');
+  public  convertToBigNumber(number: any) {
+    const BN = this.web3.utils.BN;
+    return new BN(number);
+
   }
 
   private refreshAccounts() {
